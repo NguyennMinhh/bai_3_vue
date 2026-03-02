@@ -32,14 +32,41 @@ const goBack = () => {
     <div v-else-if="error" style="color: red;">Error: {{ error }}</div>
     <div v-else-if="!user">User not found</div>
     <div v-else>
-        <div>User Detail:</div>
-        <div>name: {{ user.name }}</div>
-        <div>email: {{ user.email }}</div>
-        <div>phone: {{ user.phone }}</div>
-        <div>website: {{ user.website }}</div>
-        <div>company name: {{ user.company?.name }}</div>
+        <table class="dashboard">
+            <thead>
+                <tr>
+                    <th><strong>Name</strong></th>
+                    <th><strong>Email</strong></th>
+                    <th><strong>Phone</strong></th>
+                    <th><strong>Website</strong></th>
+                    <th><strong>Company Name</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>{{ user.website }}</td>
+                    <td>{{ user.company?.name }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
 <style scoped>
+
+
+.dashboard {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.dashboard td, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
 </style>

@@ -34,17 +34,32 @@ const filteredUsers = computed(() => {
             type="text" 
             v-model="searchQuery"
         />
-        <ul>
-            <li v-for="user in filteredUsers" :key="user.id">
-                <router-link
-                    :to="`/user/${user.id}`">
-                    Name: {{ user.name }}
-                    <br>
-                    Email: {{ user.email }}
-                </router-link>
-                <button @click="goToDetail(user.id)">View Detail</button>
-            </li>
-        </ul>
+        <table class="dashboard">
+            <thead>
+                <tr>
+                    <th><strong>ID</strong></th>
+                    <th><strong>Name</strong></th>
+                    <th><strong>Email</strong></th>
+                    <th><strong>Action</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="user in filteredUsers" :key="user.id">
+                    <td>
+                        <router-link :to="`/user/${user.id}`">{{ user.id }}</router-link>
+                    </td>
+                    <td>
+                        <router-link :to="`/user/${user.id}`">{{ user.name }}</router-link>
+                    </td>
+                    <td>
+                        <router-link :to="`/user/${user.id}`">{{ user.email }}</router-link>
+                    </td>
+                    <td>
+                        <button @click="goToDetail(user.id)">View Detail</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div v-else>Không có user nào</div>
 </template>
@@ -52,5 +67,17 @@ const filteredUsers = computed(() => {
 <style scoped>
 .error {
     color: red;
+}
+
+.dashboard {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.dashboard td, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
 }
 </style>
