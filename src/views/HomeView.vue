@@ -18,7 +18,7 @@ const goToDetail = (userId) => {
 </script>
 
 <template>
-    <div v-if="error">Error: {{ error }}</div>
+    <div v-if="error" class="error">Error: {{ error }}</div>
     <div v-else-if="loading">Loading...</div>
     <ul v-else-if="users && users.length > 0">
         <li v-for="user in users" :key="user.id">
@@ -35,4 +35,7 @@ const goToDetail = (userId) => {
 </template>
 
 <style scoped>
+.error {
+    color: red;
+}
 </style>

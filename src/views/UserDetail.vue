@@ -7,7 +7,7 @@ import { storeToRefs } from 'pinia';
 const router = useRouter()
 const route = useRoute()
 const userStore = useUserStore()
-const { loading } = storeToRefs(userStore)
+const { loading, error } = storeToRefs(userStore)
 
 onMounted(() => {
     console.log(userStore.users.length)
@@ -29,6 +29,7 @@ const goBack = () => {
 <template>
     <button @click="goBack">Back</button>
     <div v-if="loading">Loading...</div>
+    <div v-else-if="error" style="color: red;">Error: {{ error }}</div>
     <div v-else-if="!user">User not found</div>
     <div v-else>
         <div>User Detail:</div>

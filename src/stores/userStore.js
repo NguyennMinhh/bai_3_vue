@@ -8,18 +8,17 @@ export const useUserStore = defineStore('user',{
         error: ''
     }),
     actions: {
-        fetchUsers() {
+        async fetchUsers() {
             this.loading = true
-            axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(response => {
+            this.error = ''
+            try {
+                const response = await axios.get("https://jsonplaceholder.typicode.com/users")
                 this.users = response.data
-            })
-            .catch(error => {
-                this.error = "Không tải được dữ liệu..."
-            })
-            .finally(() => {
+            } catch(error) {
+                this.error = "Không tải được dữ liệu"
+            } finally {
                 this.loading = false
-            })
+            }
         }
     },
     getters: {
