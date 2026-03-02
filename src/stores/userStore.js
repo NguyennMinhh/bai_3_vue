@@ -8,7 +8,7 @@ export const useUserStore = defineStore('user',{
         error: ''
     }),
     actions: {
-        fetchUser() {
+        fetchUsers() {
             this.loading = true
             axios.get('https://jsonplaceholder.typicode.com/users')
             .then(response => {
